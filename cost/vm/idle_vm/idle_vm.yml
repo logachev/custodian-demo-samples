@@ -1,0 +1,11 @@
+policies:
+  - name: find-idle-vms
+    description: Finds low utilization virtual machines based on CPU threshold
+    resource: azure.vm
+    filters:
+      - type: metric
+        metric: Percentage CPU
+        aggregation: average
+        op: lt
+        threshold: 5
+        timeframe: 72

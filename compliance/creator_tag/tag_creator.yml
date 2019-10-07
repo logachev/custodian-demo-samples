@@ -1,0 +1,16 @@
+policies:
+    - name: azure-auto-tag-resources
+      description: |
+        Adds the creator's email as a tag to a virtual machines, networks and storage accounts
+        looking up to 10 days prior
+      resource: azure.armresource
+      filters:
+        - type: resource-type
+          values:
+            - Microsoft.Network/virtualNetworks
+            - Microsoft.Compute/virtualMachines
+            - Microsoft.Storage/storageAccounts
+      actions:
+       - type: auto-tag-user
+         tag: CreatorEmail
+         days: 10
